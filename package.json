@@ -1,0 +1,29 @@
+{
+  "name": "movies-app",
+  "version": "1.0.0",
+  "description": "Movies app.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jyunakaike/moviesapp.git"
+  },
+  "keywords": [],
+  "author": "Jorge Jyun Nakamura Ikeda",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jyunakaike/moviesapp/issues"
+  },
+  "homepage": "https://github.com/jyunakaike/moviesapp#readme",
+  "dependencies": {
+    "next": "^12.1.6",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "sass": "^1.52.0"
+  }
+}
