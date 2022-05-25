@@ -11,11 +11,6 @@ import { getCategoriesPreview } from 'hooks/useGetCategoriesPreview';
 
 
 const Home = () => {
-  // traditional fetch
-  // const url = `https://api.themoviedb.org/3/`
-  // const api_key = `?api_key=${process.env.NEXT_PUBLIC_API_KEY}`;
-
-  // using axios 
   const api = axios.create({
     baseURL: `https://api.themoviedb.org/3/`,
     headers: {
@@ -26,10 +21,6 @@ const Home = () => {
     }
   });
 
-  // const trendings = getTrendingMoviesPreview(url, api_key)
-  // const categories = getCategoriesPreview(url, api_key)
-
-  // for axios function 
   const trendings = getTrendingMoviesPreview(api)
   const categories = getCategoriesPreview(api)
 

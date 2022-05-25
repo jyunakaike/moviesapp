@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 import style from './Categories.module.scss'
 
@@ -11,10 +12,11 @@ export const CategoriesContainer = ({ categories }) => {
                         ?
                         categories.genres.map(
                             category => (
-                                
-                                <div key={category.id} className={style["category-container"]}>
-                                    <h3 id={`id${category.id}`} className={style["category-title"]}>{category.name}</h3>
-                                </div>
+                                <Link key={category.id} href={`/category/${category.id}-${category.name}`}>
+                                    <div className={style["category-container"]}>
+                                        <h3 id={`id${category.id}`} className={style["category-title"]}>{category.name}</h3>
+                                    </div>
+                                </Link>
                             )
                         )
                         : <h1> loading </h1>
