@@ -14,7 +14,6 @@ import { useState, useEffect } from "react";
 //         fetchData()
 //             .catch(console.error);
 //     }, []);
-
 //     return trending
 // }
 
