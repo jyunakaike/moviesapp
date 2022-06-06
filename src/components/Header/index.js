@@ -9,15 +9,7 @@ export const Header = ({ setSearchValue }) => {
         event.preventDefault();
         const formData = new FormData(searchBarRef.current);
         const search = formData.get('searchBar');
-        try {
-            const url = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.NEXT_PUBLIC_API_KEY}&query=${search}`;
-            const res = await fetch(url);
-            const data = await res.json();
-            setSearchValue(data);
-        }
-        catch (e) {
-            console.log(e);
-        }
+        setSearchValue(search);
     }
 
     return (

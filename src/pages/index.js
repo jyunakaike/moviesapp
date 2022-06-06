@@ -8,12 +8,15 @@ import axios from 'axios';
 // Custom hooks
 import { getTrendingMoviesPreview } from 'hooks/useGetTrendingMoviesPreview';
 import { getCategoriesPreview } from 'hooks/useGetCategoriesPreview';
-// import { useGetMoviesBySearch } from 'hooks/useGetMoviesBySearch'
+import { useGetMoviesBySearch } from 'hooks/useGetMoviesBySearch'
 
 
 const Home = () => {
-  // useState for searchFilter
+  // useState for searchFilter 
+  // value = Data from input, 
+  // data  = api result ,
   const [searchValue, setSearchValue] = useState()
+  const [searchData, setSearchData] = useState()
 
   const api = axios.create({
     baseURL: `https://api.themoviedb.org/3/`,
@@ -28,22 +31,27 @@ const Home = () => {
   const trendings = getTrendingMoviesPreview(api)
   const categories = getCategoriesPreview(api)
 
-  // const searchMovies = useGetMoviesBySearch(api, 'chihiro');
-  // const searchMovies = useGetMoviesBySearch(api, searchValue);
-
+  // search render  
+  useEffect(() => {
+    if (searchValue) {
+      useGetMoviesBySearch(api, searchValue, setSearchData)
+      // console.log(searchData)
+    }
+  }, [searchValue])
+  
   return (
     <div >
       <Header setSearchValue={setSearchValue} />
-        {
-          (searchValue)
-            ?
-            <TrendingPreviewContainer name={'Search'}>
-              {searchValue.results.map(movie =>
-                (<MovieContainer key={movie.id} {...movie} />)
-              )}
-            </TrendingPreviewContainer>
-            : null
-        }
+      {
+        (searchData)
+          ?
+          <TrendingPreviewContainer name={'Search'}>
+            {searchData.results.map(movie =>
+              (<MovieContainer key={movie.id} {...movie} />)
+            )}
+          </TrendingPreviewContainer>
+          : null
+      }
       <TrendingPreviewContainer name={'Trendings'} >
         {
           (trendings)
