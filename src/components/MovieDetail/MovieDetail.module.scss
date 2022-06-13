@@ -1,3 +1,4 @@
+@use '../../style/vars.scss' as var;
 .movieDetail-container {
     border-top-left-radius: 16px;
     border-top-right-radius: 16px;
@@ -5,8 +6,8 @@
     // margin-top: 403px;
     z-index: 1;
     position: absolute;
-    background-color: red;
-    // background-color: var(--purple-light-1);
+    // background-color: red;
+    background-color: var.$purple-light-1;
 }
 
 .movieDetail-title {
@@ -20,12 +21,12 @@
     display: inline-block;
     text-align: right;
     width: 18%;
-    font-weight: var(--font-weight-title2);
+    font-weight: var.$font-weight-title2;
 }
 
 .movieDetail-score::before {
     content: '★';
-    color: var(--yellow);
+    color: var.$yellow;
     padding-right: 4px;
 }
 

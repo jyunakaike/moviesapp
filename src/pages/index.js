@@ -5,6 +5,8 @@ import { MovieContainer } from 'components/MovieContainer';
 import { CategoriesContainer } from 'components/CategoriesContainer';
 import axios from 'axios';
 
+// loading 
+import { Loading } from 'components/Loading';
 // Custom hooks
 import { getTrendingMoviesPreview } from 'hooks/useGetTrendingMoviesPreview';
 import { getCategoriesPreview } from 'hooks/useGetCategoriesPreview';
@@ -59,7 +61,8 @@ const Home = () => {
             trendings.results.map(trending =>
               (<MovieContainer key={trending.id} {...trending} />)
             )
-            : <h1>loading....</h1>
+            : <Loading  />
+            // : <h1>Loading</h1>
         }
       </TrendingPreviewContainer>
       <CategoriesContainer categories={categories} />
