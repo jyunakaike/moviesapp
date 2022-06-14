@@ -40,7 +40,7 @@ const CategoryItem = () => {
 
     return (
         <div style={{ margin: "0.1rem" }} >
-            {categoryId}
+            {/* {categoryId} */}
             <h1 style={{ marginBottom: "1rem" }} >{categoryName}</h1>
             {
                 (movies)

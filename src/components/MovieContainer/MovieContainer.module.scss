@@ -22,4 +22,19 @@
     width: 150px;
     min-width: 150px;
     max-width: 150px;
+    background-color: red;
+}
+
+.movie-notimg{
+    border-radius: 8px;
+    height: 225px;
+    min-height: 225px;
+    max-height: 225px;
+    width: 150px;
+    min-width: 150px;
+    max-width: 150px;
+    background-color: rgb(171, 28, 6);
+    display: grid;
+    place-items: center;
+    color: white;
 }

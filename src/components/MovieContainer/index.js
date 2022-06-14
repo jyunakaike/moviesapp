@@ -20,19 +20,29 @@ export const MovieContainer = ({ original_title, poster_path, id }) => {
         observer.observe(element.current)
     }, [element])
 
+    if (!poster_path) {
+        console.log('error en ' + id)
+    }
+
     return (
         // <Link key={category.id} href={`/category/${category.id}-${category.name}`}>
         <div className={style["movie-container"]} ref={element}>
-
             {
                 show &&
                 <Link href={`/detail/${id}`}>
-                    <img
-                        src={`https://image.tmdb.org/t/p/w300/${poster_path}`}
-                        className={style["movie-img"]}
-                        alt={original_title}
+                    {
+                        (poster_path)
+                            ?
+                            <img
+                                src={`https://image.tmdb.org/t/p/w300/${poster_path}`}
+                                className={style["movie-img"]}
+                                alt={original_title}
+                            />
+                            : 
+                            <div className={style["movie-notimg"]}>{ original_title} </div>
+                    }
 
-                    />
+
                 </Link >
 
             }
