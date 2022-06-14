@@ -30,13 +30,13 @@ const Home = () => {
       'api_key': process.env.NEXT_PUBLIC_API_KEY,
     }
   });
-  const trendings = getTrendingMoviesPreview(api)
-  const categories = getCategoriesPreview(api)
+  const trendings = getTrendingMoviesPreview()
+  const categories = getCategoriesPreview()
 
   // search render  
   useEffect(() => {
     if (searchValue) {
-      useGetMoviesBySearch(api, searchValue, setSearchData)
+      useGetMoviesBySearch(searchValue, setSearchData)
       // console.log(searchData)
     }
   }, [searchValue])

@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
+import { api } from 'api';
 
-export const useGetMovieDetail = (api, id) => {
+export const useGetMovieDetail = (id) => {
     const [movie, setMovie] = useState();
-
     useEffect(() => {
         if (id) {
             const fetchData = async () => {

@@ -27,7 +27,7 @@ const CategoryItem = () => {
         }
     });
 
-    const movies = useGetMoviesByCategory(api, categoryId);
+    const movies = useGetMoviesByCategory(categoryId);
 
     const validate = getCategoriesPreview(api)
     if (validate) {

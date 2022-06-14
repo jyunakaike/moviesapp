@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
+import { api } from 'api';
 
-export const useGetMoviesByCategory = (api, genresId) => {
+export const useGetMoviesByCategory = (genresId) => {
     const [moviesByCategory, setMoviesByCategory] = useState();
 
     useEffect(() => {

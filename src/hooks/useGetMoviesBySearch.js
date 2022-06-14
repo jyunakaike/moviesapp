@@ -1,5 +1,6 @@
+import { api } from "api";
 
-export const useGetMoviesBySearch = (api, query, setSearchData) => {
+export const useGetMoviesBySearch = ( query, setSearchData) => {
     const fetchData = async () => {
         const { data } = await api('search/movie', {
             params: { query, },

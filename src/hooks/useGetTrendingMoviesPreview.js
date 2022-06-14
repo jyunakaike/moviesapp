@@ -1,24 +1,7 @@
 import { useState, useEffect } from "react";
+import { api } from "api";
 
-
-
-// traditional fetch
-// export const getTrendingMoviesPreview = (url , api_key) => {
-//     const [trending, setTrending] = useState();
-//     useEffect(() => {
-//         const fetchData = async () => {
-//             const res = await fetch(url+`trending/movie/day`+api_key)
-//             const data = await res.json();
-//             setTrending(data);
-//         }
-//         fetchData()
-//             .catch(console.error);
-//     }, []);
-//     return trending
-// }
-
-
-export const getTrendingMoviesPreview = (api) => {
+export const getTrendingMoviesPreview = () => {
         const [trending, setTrending] = useState();
         useEffect(() => {
             const fetchData = async () => {

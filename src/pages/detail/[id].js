@@ -1,7 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import Error from 'next/error';
-import axios from 'axios';
 import { useGetMovieDetail } from 'hooks/useGetMovieDetail';
 
 // components
@@ -11,17 +10,8 @@ const detail = () => {
     const {
         query: { id },
     } = useRouter();
-
-    const api = axios.create({
-        baseURL: `https://api.themoviedb.org/3/`,
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        params: {
-            'api_key': process.env.NEXT_PUBLIC_API_KEY,
-        }
-    })
-    const movie = useGetMovieDetail(api, id);
+    
+    const movie = useGetMovieDetail(id);
 
     return (
         <>

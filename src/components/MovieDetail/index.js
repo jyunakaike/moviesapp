@@ -20,7 +20,7 @@ const MovieDetail = ({ id, poster_path, original_title, overview, vote_average, 
         }
     });
 
-    const RelatedMovies = getRelatedMovieDetail(api, id);
+    const RelatedMovies = getRelatedMovieDetail(id);
 
     return (
         <section id="movieDetail" className={style["movieDetail-container"]}>
