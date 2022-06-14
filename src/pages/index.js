@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Header } from 'components/Header';
 import { TrendingPreviewContainer } from 'components/TrendingPreviewContainer';
 import { MovieContainer } from 'components/MovieContainer';
@@ -20,6 +20,7 @@ const Home = () => {
   const [searchValue, setSearchValue] = useState()
   const [searchData, setSearchData] = useState()
 
+  // api
   const api = axios.create({
     baseURL: `https://api.themoviedb.org/3/`,
     headers: {
@@ -29,7 +30,6 @@ const Home = () => {
       'api_key': process.env.NEXT_PUBLIC_API_KEY,
     }
   });
-  // api
   const trendings = getTrendingMoviesPreview(api)
   const categories = getCategoriesPreview(api)
 
@@ -40,7 +40,7 @@ const Home = () => {
       // console.log(searchData)
     }
   }, [searchValue])
-  
+
   return (
     <div >
       <Header setSearchValue={setSearchValue} />
@@ -61,8 +61,7 @@ const Home = () => {
             trendings.results.map(trending =>
               (<MovieContainer key={trending.id} {...trending} />)
             )
-            : <Loading  />
-            // : <h1>Loading</h1>
+            : <Loading />
         }
       </TrendingPreviewContainer>
       <CategoriesContainer categories={categories} />
