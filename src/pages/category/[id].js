@@ -1,35 +1,36 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Error from 'next/error';
-import axios from 'axios';
 import { useGetMoviesByCategory } from 'hooks/useGetMoviesByCategory';
 import { getCategoriesPreview } from 'hooks/useGetCategoriesPreview';
 
 import { MovieContainer } from 'components/MovieContainer';
 
 const CategoryItem = () => {
+    // useRouter
     const {
         query: { id },
     } = useRouter();
+
+    // useState
     const [categoryId, categoryName] = []
+    const [page, setPage] = useState(1)
+
+    // get only id 
     if (id) {
         [categoryId, categoryName] = id.split('-');
-
     }
 
-    const api = axios.create({
-        baseURL: `https://api.themoviedb.org/3/`,
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        params: {
-            'api_key': process.env.NEXT_PUBLIC_API_KEY,
-        }
-    });
+    // initial useEffect
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll)
+    }, [])
 
-    const movies = useGetMoviesByCategory(categoryId);
+    // get movies of useGetMoviesByCategory api 
+    const movies = useGetMoviesByCategory(categoryId, page);
 
-    const validate = getCategoriesPreview(api)
+    // for validation the id
+    const validate = getCategoriesPreview()
     if (validate) {
         const validate2 = validate.genres
             .some(movie => movie.id.toString() === categoryId && movie.name === categoryName)
@@ -38,13 +39,22 @@ const CategoryItem = () => {
         }
     }
 
+    //  handleScroll funtion return true if scroll is in the bottom
+    const handleScroll = (e) => {
+        const { scrollTop, clientHeight, scrollHeight } = e.target.documentElement
+        console.log(scrollTop, clientHeight, scrollHeight);
+        if (scrollTop + clientHeight >= scrollHeight-10) {
+            setPage(page ++ )
+            console.log('true');
+        }
+    }
+
     return (
         <div style={{ margin: "0.1rem" }} >
-            {/* {categoryId} */}
             <h1 style={{ marginBottom: "1rem" }} >{categoryName}</h1>
             {
                 (movies)
-                    ? movies.results.map(movie =>
+                    ? movies.map(movie =>
                         <MovieContainer key={movie.id} {...movie} />
                     )
                     : <p> loading</p>

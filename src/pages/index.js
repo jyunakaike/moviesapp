@@ -10,7 +10,6 @@ import { getTrendingMoviesPreview } from 'hooks/useGetTrendingMoviesPreview';
 import { getCategoriesPreview } from 'hooks/useGetCategoriesPreview';
 import { useGetMoviesBySearch } from 'hooks/useGetMoviesBySearch'
 
-
 const Home = () => {
   // useState for searchFilter 
   // value = Data from input, 
@@ -45,9 +44,6 @@ const Home = () => {
   const handleClickSearch = () => {
     setSearchPagination(searchPagination+1)
   }
-
-  console.log(searchData)
-  console.log(searchPagination);
 
   return (
     <div >
