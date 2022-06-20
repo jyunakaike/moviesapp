@@ -3,8 +3,6 @@ import { Header } from 'components/Header';
 import { TrendingPreviewContainer } from 'components/TrendingPreviewContainer';
 import { MovieContainer } from 'components/MovieContainer';
 import { CategoriesContainer } from 'components/CategoriesContainer';
-import axios from 'axios';
-
 // loading 
 import { Loading } from 'components/Loading';
 // Custom hooks
@@ -20,26 +18,36 @@ const Home = () => {
   const [searchValue, setSearchValue] = useState()
   const [searchData, setSearchData] = useState()
 
-  // api
-  const api = axios.create({
-    baseURL: `https://api.themoviedb.org/3/`,
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    params: {
-      'api_key': process.env.NEXT_PUBLIC_API_KEY,
-    }
-  });
-  const trendings = getTrendingMoviesPreview()
-  const categories = getCategoriesPreview()
+  // page for trend search
+  const [trend, setTrend] = useState(1)
+  const [searchPagination, setSearchPagination] = useState(1)
 
+
+  const trendings = getTrendingMoviesPreview(trend)
+  const categories = getCategoriesPreview()
+  // const searchData = useGetMoviesBySearch(searchValue , searchPagination)
+  // const searchData = useGetMoviesBySearch(searchValue )
+
+  // console.log(searchData);
+  // console.log(trend);
   // search render  
+
   useEffect(() => {
     if (searchValue) {
       useGetMoviesBySearch(searchValue, setSearchData)
-      // console.log(searchData)
     }
   }, [searchValue])
+
+
+  const handleClickTrend = () => {
+    setTrend(trend+1)
+  }
+  const handleClickSearch = () => {
+    setSearchPagination(searchPagination+1)
+  }
+
+  console.log(searchData)
+  console.log(searchPagination);
 
   return (
     <div >
@@ -47,23 +55,23 @@ const Home = () => {
       {
         (searchData)
           ?
-          <TrendingPreviewContainer name={'Search'}>
+          <TrendingPreviewContainer name={'Search'} handleClick = {handleClickSearch}  >
             {searchData.results.map(movie =>
               (<MovieContainer key={movie.id} {...movie} />)
             )}
           </TrendingPreviewContainer>
           : null
       }
-      <TrendingPreviewContainer name={'Trendings'} >
-        {
-          (trendings)
-            ?
-            trendings.results.map(trending =>
+      {
+        (trendings)
+          ?
+          <TrendingPreviewContainer name={'Trendings'} handleClick={handleClickTrend} >
+            {trendings.map(trending =>
               (<MovieContainer key={trending.id} {...trending} />)
-            )
-            : <Loading />
-        }
-      </TrendingPreviewContainer>
+            )}
+          </TrendingPreviewContainer>
+          : <Loading />
+      }
       <CategoriesContainer categories={categories} />
     </div>
   )

@@ -20,10 +20,6 @@ export const MovieContainer = ({ original_title, poster_path, id }) => {
         observer.observe(element.current)
     }, [element])
 
-    if (!poster_path) {
-        console.log('error en ' + id)
-    }
-
     return (
         // <Link key={category.id} href={`/category/${category.id}-${category.name}`}>
         <div className={style["movie-container"]} ref={element}>

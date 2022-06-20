@@ -24,11 +24,16 @@ const MovieDetail = ({ id, poster_path, original_title, overview, vote_average, 
 
     return (
         <section id="movieDetail" className={style["movieDetail-container"]}>
-            <img
-                src={`https://image.tmdb.org/t/p/w300/${poster_path}`}
-                // className={style["movie-img"]}
-                alt={original_title}
-            />
+            {
+                (poster_path)
+                    ?
+                    <img
+                        src={`https://image.tmdb.org/t/p/w300/${poster_path}`}
+                        // className={style["movie-img"]}
+                        alt={original_title}
+                    />
+                    :null
+            }
 
             <h1 className={style["movieDetail-title"]}>{original_title}</h1>
             <span className={style["movieDetail-score"]}>{vote_average}</span>
